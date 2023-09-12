@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
-public interface FileContentReader <V> {
+public interface FileContentReader<V> {
 
-    Collection<V> read (File file);
+    Collection<V> read(File file);
 
 }

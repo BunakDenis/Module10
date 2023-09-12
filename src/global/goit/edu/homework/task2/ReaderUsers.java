@@ -6,13 +6,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 public class ReaderUsers implements FileContentReader <User> {
 
     public Collection<User> read(File file) {
 
-        ArrayList<User> users = new ArrayList<>();
+        List<User> users = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(file)) {
 

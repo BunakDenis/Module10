@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ReaderWords implements FileContentReader<String> {
     @Override
-    public Collection <String> read(File file) {
+    public Collection<String> read(File file) {
         Collection<String> result = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(file)) {

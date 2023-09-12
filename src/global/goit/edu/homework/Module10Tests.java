@@ -56,5 +56,4 @@ public class Module10Tests {
         checker.check();
 
     }
-
 }

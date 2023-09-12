@@ -4,6 +4,8 @@ import global.goit.edu.homework.FileContentChecker;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CheckerPhoneNumbers implements FileContentChecker<String> {
 
@@ -20,6 +22,7 @@ public class CheckerPhoneNumbers implements FileContentChecker<String> {
         Collection <String> result = new ArrayList<>();
 
         for (String phoneNumber : PhoneNumbers) {
+            //System.out.println(phoneNumber);
             if (checkForValidPhoneNumber(phoneNumber)) {
                 System.out.println(phoneNumber);
                 result.add(phoneNumber);
@@ -30,33 +33,16 @@ public class CheckerPhoneNumbers implements FileContentChecker<String> {
 
     private boolean checkForValidPhoneNumber(String phoneNumber) {
 
-        int concurrence = 0;
-        int concurrence1 = 0;
+        Pattern patternFirst = Pattern.compile("^\\(\\d{3}\\)\\s\\d{3}\\-\\d{4}");
+        Pattern patternSecond = Pattern.compile("^\\d{3}\\-\\d{3}\\-\\d{4}");
 
-        //проверяем соответствует номер шаблону (xxx) xxx-xxxx
-        if (phoneNumber.charAt(0) == '(') {
-            concurrence++;
-        }
+        Matcher matcherFirst = patternFirst.matcher(phoneNumber);
+        boolean matchFirstFound = matcherFirst.find();
 
-        if (phoneNumber.charAt(4) == ')') {
-            concurrence++;
-        }
+        Matcher matcherSecond = patternSecond.matcher(phoneNumber);
+        boolean matchSecondFound = matcherSecond.find();
 
-        if (phoneNumber.charAt(5) == ' ') {
-            concurrence++;
-        }
-
-        if (phoneNumber.charAt(9) == '-') {
-            concurrence++;
-        }
-
-        //проверяем соответствует номер шаблону xxx-xxx-xxxx
-
-        if (phoneNumber.charAt(3) == '-' && phoneNumber.charAt(7) == '-') {
-            concurrence1++;
-        }
-
-        if (concurrence == 4 || concurrence1 == 1) {
+        if (matchFirstFound || matchSecondFound) {
             return true;
         } else {
             return false;
